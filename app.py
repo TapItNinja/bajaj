@@ -1,8 +1,12 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # This enables CORS for all routes
+CORS(app)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 @app.route('/bfhl', methods=['POST'])
 def process_data():
@@ -50,4 +54,4 @@ def get_operation_code():
 
 if __name__ == '__main__':
     # Run the Flask app
-    app.run(debug=True, port=3001)
+    app.run(debug=False, port=80)
